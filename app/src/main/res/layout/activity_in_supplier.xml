@@ -69,5 +69,13 @@
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="55dp"/>
+    <Button
+        android:id="@+id/btn_data"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:textColor="@android:color/white"
+        android:text="Lihat Data Supplier"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"/>
 
 </LinearLayout>

@@ -26,7 +26,7 @@ import java.util.Map;
 public class InUnitActivity extends AppCompatActivity {
 
     private EditText unit;
-    private Button btn_unit;
+    private Button btn_unit, btn_data;
     private ProgressBar loading;
 
     private static String URL_UNIT="http://192.168.1.10/php_apobase/in_unit.php";
@@ -39,11 +39,18 @@ public class InUnitActivity extends AppCompatActivity {
         loading= findViewById(R.id.loading);
         unit= findViewById(R.id.unit);
         btn_unit=findViewById(R.id.btn_unit);
+        btn_data=findViewById(R.id.btn_data);
 
         btn_unit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Unit();
+            }
+        });
+        btn_data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

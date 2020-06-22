@@ -26,7 +26,7 @@ import java.util.Map;
 public class InSupplierActivity extends AppCompatActivity {
 
     private EditText  supplier, phone, address, description;
-    private Button btn_supplier;
+    private Button btn_supplier,btn_data;
     private ProgressBar loading;
 
     private static String URL_SUPPLIER="http://192.168.1.10/php_apobase/in_supplier.php";
@@ -42,11 +42,18 @@ public class InSupplierActivity extends AppCompatActivity {
         address= findViewById(R.id.address);
         description= findViewById(R.id.description);
         btn_supplier=findViewById(R.id.btn_supplier);
+        btn_data=findViewById(R.id.btn_data);
 
         btn_supplier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Supplier();
+            }
+        });
+        btn_data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

@@ -21,7 +21,8 @@
         <activity android:name=".Main2Activity" />
         <activity android:name=".ReadUnitActivity" />
         <activity android:name=".InUnitActivity" />
-
+        <activity android:name=".Activity.ReadItemActivity" />
+        <activity android:name=".Activity.ReadCategoryActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".InCategoryActivity"/>
         <activity android:name=".SplashScreen" android:theme="@style/SplashTheme">

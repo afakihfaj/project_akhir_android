@@ -55,7 +55,7 @@ public class ReadCategoryActivity extends AppCompatActivity {
         rvDataC = findViewById(R.id.rv_category);
         pbDataC = findViewById(R.id.pb_category);
         srlDataC = findViewById(R.id.srl_category);
-        fabCategory = findViewById(R.id.fab_category);
+       // fabCategory = findViewById(R.id.fab_category);
         lmDataC = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rvDataC.setLayoutManager(lmDataC);
 
@@ -70,12 +70,12 @@ public class ReadCategoryActivity extends AppCompatActivity {
             }
         });
 
-        fabCategory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ReadCategoryActivity.this, InCategoryActivity.class));
-            }
-        });
+//        fabCategory.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(ReadCategoryActivity.this, InCategoryActivity.class));
+//            }
+//        });
 
     }
 

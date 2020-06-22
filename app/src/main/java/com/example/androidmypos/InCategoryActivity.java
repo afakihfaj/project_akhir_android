@@ -52,7 +52,7 @@ public class InCategoryActivity extends AppCompatActivity {
         btn_data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(InCategoryActivity.this, ReadCategoryActivity.class));
+                finish();
             }
         });
     }
