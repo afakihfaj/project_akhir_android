@@ -8,54 +8,77 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="6dp">
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:padding="8dp">
 
-        <TextView
-            android:id="@+id/tv_id"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:id="@+id/thumbnail"/>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Item Id"
-            android:visibility="gone"/>
+            android:orientation="vertical"
+            android:padding="6dp">
+            <TextView
+                android:id="@+id/tv_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Item Id"
+                android:visibility="gone"/>
 
-        <TextView
-            android:id="@+id/tv_barcode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Barcode"
-            android:textSize="22sp"
-            android:textStyle="bold"/>
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Item"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tv_barcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Barcode"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Item"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/tv_Cid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Category"
-            android:textSize="16sp"/>
-        <TextView
-            android:id="@+id/tv_Uid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Unit"
-            android:textSize="16sp"/>
-        <TextView
-            android:id="@+id/tv_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Price"
-            android:textSize="16sp"/>
-        <TextView
-            android:id="@+id/tv_stock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Stock"
-            android:textSize="16sp"/>
+            <TextView
+                android:id="@+id/tv_Cid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:textSize="16sp"/>
+            <TextView
+                android:id="@+id/tv_Uid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Unit"
+                android:textSize="16sp"/>
+            <TextView
+                android:id="@+id/tv_berat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:textSize="16sp"/>
+            <TextView
+                android:id="@+id/tv_deskripsi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Berat"
+                android:textSize="16sp"/>
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:textSize="16sp"/>
+            <TextView
+                android:id="@+id/tv_stock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stock"
+                android:textSize="16sp"/>
+        </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

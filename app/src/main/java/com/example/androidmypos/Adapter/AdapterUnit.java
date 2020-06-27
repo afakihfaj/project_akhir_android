@@ -1,21 +1,36 @@
 package com.example.androidmypos.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.androidmypos.API.APISupplierData;
+import com.example.androidmypos.API.APIUnitData;
+import com.example.androidmypos.API.RetroServer;
+import com.example.androidmypos.Activity.ReadItemActivity;
+import com.example.androidmypos.Activity.ReadUnitActivity;
+import com.example.androidmypos.Model.ResponseModelS;
+import com.example.androidmypos.Model.ResponseModelU;
 import com.example.androidmypos.Model.UnitModel;
 import com.example.androidmypos.R;
 
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+
 public class AdapterUnit extends RecyclerView.Adapter<AdapterUnit.HolderData> {
     private Context ctx;
     private List<UnitModel> list_Unit;
+    private int uid;
 
     public AdapterUnit(Context ctx, List<UnitModel> list_Unit) {
         this.ctx = ctx;
@@ -53,8 +68,56 @@ public class AdapterUnit extends RecyclerView.Adapter<AdapterUnit.HolderData> {
             super(itemView);
             tvUnit_id = itemView.findViewById(R.id.tv_id);
             tvName = itemView.findViewById(R.id.tv_name);
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    android.app.AlertDialog.Builder dialogPesan = new AlertDialog.Builder(ctx);
+                    dialogPesan.setMessage("Pilih operasi yang akan dilakukan");
+                    dialogPesan.setCancelable(true);
+
+                    uid = Integer.parseInt(tvUnit_id.getText().toString());
+
+                    dialogPesan.setPositiveButton("Hapus", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int which) {
+                            deleteData();
+                            dialogInterface.dismiss();
+                            ((ReadUnitActivity) ctx).retrieveUnit();
+                        }
+                    });
+
+                    dialogPesan.setNegativeButton("Edit", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int which) {
+
+                        }
+                    });
+                    dialogPesan.show();
+                    return false;
+
+                }
+            });
 //            tvCreated = itemView.findViewById(R.id.tv_created);
 //            tvUpdate = itemView.findViewById(R.id.tv_update);
+        }
+        private void deleteData(){
+            APIUnitData ardData = RetroServer.konekRetrofit().create(APIUnitData.class);
+            Call<ResponseModelU> hapusData = ardData.ardDeleteData(uid);
+
+            hapusData.enqueue(new Callback<ResponseModelU>() {
+                @Override
+                public void onResponse(Call<ResponseModelU> call, retrofit2.Response<ResponseModelU> response) {
+                    int kode = response.body().getKode();
+                    String pesan = response.body().getPesan();
+                    Toast.makeText(ctx, "kode: "+kode+" | Pesan :"+pesan, Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public void onFailure(Call<ResponseModelU> call, Throwable t) {
+                    Toast.makeText(ctx, "Gagal Menghubungi Server |"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

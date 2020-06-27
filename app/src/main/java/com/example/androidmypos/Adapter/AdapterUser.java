@@ -1,27 +1,43 @@
 package com.example.androidmypos.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.androidmypos.API.APIUserData;
+import com.example.androidmypos.API.RetroServer;
+
+
+import com.example.androidmypos.Activity.ReadUserActivity;
+import com.example.androidmypos.Model.ResponseModelUser;
 import com.example.androidmypos.Model.UserModel;
 import com.example.androidmypos.R;
 
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+
 public class AdapterUser extends RecyclerView.Adapter<AdapterUser.HolderData> {
     private Context ctx;
     private List<UserModel> list_User;
-
+    private int user_id;
+    private SwipeRefreshLayout srlDataUser;
     public AdapterUser(Context ctx, List<UserModel> list_User) {
         this.ctx = ctx;
         this.list_User = list_User;
+
     }
+
 
     @NonNull
     @Override
@@ -29,6 +45,7 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.HolderData> {
         View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_user, parent, false);
         HolderData holder = new HolderData(layout);
         return holder;
+
     }
 
     @Override
@@ -51,13 +68,71 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.HolderData> {
         TextView tvUser_id,tvName, tvAddress, tvUsername;
 
         public HolderData(@NonNull View itemView) {
+
             super(itemView);
             tvUser_id = itemView.findViewById(R.id.tv_id);
             tvName = itemView.findViewById(R.id.tv_name);
             tvAddress = itemView.findViewById(R.id.tv_address);
             tvUsername = itemView.findViewById(R.id.tv_username);
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    android.app.AlertDialog.Builder dialogPesan = new AlertDialog.Builder(ctx);
+                    dialogPesan.setMessage("Pilih operasi yang akan dilakukan");
+                    dialogPesan.setCancelable(true);
+
+                    user_id = Integer.parseInt(tvUser_id.getText().toString());
+
+                    dialogPesan.setPositiveButton("Hapus", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int which) {
+                            deleteData();
+                            dialogInterface.dismiss();
+                            ((ReadUserActivity) ctx).retrieveUser();
+                        }
+                    });
+
+                    dialogPesan.setNegativeButton("Edit", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int which) {
+
+                        }
+                    });
+                    dialogPesan.show();
+                    return false;
+                }
+            });
+
+
 //            tvCreated = itemView.findViewById(R.id.tv_created);
 //            tvUpdate = itemView.findViewById(R.id.tv_update);
         }
+
+
+        private void deleteData(){
+            APIUserData ardData = RetroServer.konekRetrofit().create(APIUserData.class);
+            Call<ResponseModelUser> hapusData = ardData.ardDeleteData(user_id);
+
+            hapusData.enqueue(new Callback<ResponseModelUser>() {
+                @Override
+                public void onResponse(Call<ResponseModelUser> call, retrofit2.Response<ResponseModelUser> response) {
+                    int kode = response.body().getKode();
+                    String pesan = response.body().getPesan();
+                    Toast.makeText(ctx, "kode: "+kode+" | Pesan :"+pesan, Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public void onFailure(Call<ResponseModelUser> call, Throwable t) {
+                    Toast.makeText(ctx, "Gagal Menghubungi Server |"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+
     }
+
+
+
+
 }

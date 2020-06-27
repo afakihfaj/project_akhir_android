@@ -12,20 +12,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.MainActivity"/>
+        <activity android:name=".Activity.InItemActivity"></activity>
+        <activity android:name=".Activity.InputUser"></activity>
+        <activity android:name=".Activity.MainActivity" />
         <activity android:name=".DashboardActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".Activity.ReadUserActivity" />
         <activity android:name=".Activity.ReadSupplierActivity" />
-        <activity android:name=".InSupplierActivity" />
-        <activity android:name=".Main2Activity" />
-        <activity android:name=".ReadUnitActivity" />
-        <activity android:name=".InUnitActivity" />
+        <activity android:name=".Activity.InSupplierActivity" />
+        <activity android:name=".Activity.ReadUnitActivity" />
+        <activity android:name=".Activity.InUnitActivity" />
         <activity android:name=".Activity.ReadItemActivity" />
         <activity android:name=".Activity.ReadCategoryActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".InCategoryActivity"/>
-        <activity android:name=".SplashScreen" android:theme="@style/SplashTheme">
+        <activity android:name=".Activity.InCategoryActivity" />
+        <activity
+            android:name=".SplashScreen"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -40,15 +40,15 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="invisible"/>
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/fab_unit"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_alignParentRight="true"-->
-<!--        android:layout_margin="36dp"-->
-<!--        android:clickable="true"-->
-<!--        android:src="@drawable/ic_add"/>-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="36dp"
+        android:clickable="true"
+        android:src="@drawable/ic_add"/>
 
 
 </RelativeLayout>

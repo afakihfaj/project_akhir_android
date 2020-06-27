@@ -7,7 +7,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -15,8 +14,6 @@ import android.widget.Toast;
 import com.example.androidmypos.API.APICategoryData;
 import com.example.androidmypos.API.RetroServer;
 import com.example.androidmypos.Adapter.AdapterCategory;
-import com.example.androidmypos.InCategoryActivity;
-import com.example.androidmypos.InUnitActivity;
 import com.example.androidmypos.Model.CategoryModel;
 import com.example.androidmypos.Model.ResponseModelC;
 import com.example.androidmypos.R;
@@ -55,11 +52,11 @@ public class ReadCategoryActivity extends AppCompatActivity {
         rvDataC = findViewById(R.id.rv_category);
         pbDataC = findViewById(R.id.pb_category);
         srlDataC = findViewById(R.id.srl_category);
-       // fabCategory = findViewById(R.id.fab_category);
+       fabCategory = findViewById(R.id.fab_category);
         lmDataC = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rvDataC.setLayoutManager(lmDataC);
 
-        retrieveCategory();
+        //retrieveCategory();
 
         srlDataC.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -70,12 +67,12 @@ public class ReadCategoryActivity extends AppCompatActivity {
             }
         });
 
-//        fabCategory.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(ReadCategoryActivity.this, InCategoryActivity.class));
-//            }
-//        });
+        fabCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ReadCategoryActivity.this, InCategoryActivity.class));
+            }
+        });
 
     }
 
@@ -90,7 +87,7 @@ public class ReadCategoryActivity extends AppCompatActivity {
                 int kode = response.body().getKode();
                 String pesan = response.body().getPesan();
 
-                Toast.makeText(ReadCategoryActivity.this, "Kode :"+kode+ "| Pesan :" +pesan, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(ReadCategoryActivity.this, "Kode :"+kode+ "| Pesan :" +pesan, Toast.LENGTH_SHORT).show();
                 listCategory = response.body().getData();
 
                 adDataC = new AdapterCategory(ReadCategoryActivity.this, listCategory);
@@ -109,4 +106,9 @@ public class ReadCategoryActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        retrieveCategory();
+    }
 }

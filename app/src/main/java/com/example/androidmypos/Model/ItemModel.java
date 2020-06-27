@@ -2,7 +2,7 @@ package com.example.androidmypos.Model;
 
 public class ItemModel {
     private int item_id;
-    private String barcode, name, category_id, unit_id, price, stock;
+    private String barcode, name, category_id, unit_id, price, berat, deskripsi, stock;
 
     public int getItem_id() {
         return item_id;
@@ -34,6 +34,12 @@ public class ItemModel {
 
     public void setPrice(String price) { this.price = price;}
     public String getPrice() { return price; }
+
+    public void setBerat(String berat) { this.berat = berat;}
+    public String getBerat() { return berat; }
+
+    public void setDeskripsi(String deskripsi) { this.deskripsi = deskripsi;}
+    public String getDeskripsi() { return deskripsi; }
 
     public String getStock() {
         return stock;

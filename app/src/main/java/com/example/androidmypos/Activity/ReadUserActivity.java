@@ -14,12 +14,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.androidmypos.API.APIUserData;
 import com.example.androidmypos.API.RetroServer;
 import com.example.androidmypos.Adapter.AdapterUser;
-import com.example.androidmypos.Adapter.AdapterUser;
-import com.example.androidmypos.InCategoryActivity;
-import com.example.androidmypos.InUnitActivity;
-import com.example.androidmypos.Model.ResponseModelS;
 import com.example.androidmypos.Model.ResponseModelUser;
-import com.example.androidmypos.Model.UserModel;
 import com.example.androidmypos.Model.UserModel;
 import com.example.androidmypos.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -37,7 +32,8 @@ public class ReadUserActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager lmDataUser;
     private ProgressBar pbDataUser;
     private SwipeRefreshLayout srlDataUser;
-    private FloatingActionButton fabUser;
+    private FloatingActionButton fab_tambahu;
+
 
     private List<UserModel> listUser = new ArrayList<>();
 
@@ -57,11 +53,11 @@ public class ReadUserActivity extends AppCompatActivity {
         rvDataUser = findViewById(R.id.rv_user);
         pbDataUser = findViewById(R.id.pb_user);
         srlDataUser = findViewById(R.id.srl_user);
-//        fabUser = findViewById(R.id.fab_user);
+        fab_tambahu = findViewById(R.id.fab_tambahu);
         lmDataUser = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rvDataUser.setLayoutManager(lmDataUser);
 
-        retrieveUser();
+        //retrieveUser();
 
         srlDataUser.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -72,12 +68,13 @@ public class ReadUserActivity extends AppCompatActivity {
             }
         });
 
-//        fabUser.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(ReadUserActivity.this, InUnitActivity.class));
-//            }
-//        });
+
+     fab_tambahu.setOnClickListener(new View.OnClickListener() {
+         @Override
+          public void onClick(View v) {
+              startActivity(new Intent(ReadUserActivity.this, InputUser.class));
+           }
+       });
 
     }
 
@@ -92,7 +89,7 @@ public class ReadUserActivity extends AppCompatActivity {
                 int kode = response.body().getKode();
                 String pesan = response.body().getPesan();
 
-                Toast.makeText(ReadUserActivity.this, "Kode :"+kode+ "| Pesan :" +pesan, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ReadUserActivity.this, "Kode :"+kode+ "| Pesan :" +pesan, Toast.LENGTH_SHORT).show();
                 listUser = response.body().getData();
 
                 adDataUser = new AdapterUser(ReadUserActivity.this, listUser);
@@ -111,4 +108,12 @@ public class ReadUserActivity extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        retrieveUser();
+
+
+    }
 }

@@ -14,11 +14,8 @@ import android.widget.Toast;
 import com.example.androidmypos.API.APIUnitData;
 import com.example.androidmypos.API.RetroServer;
 import com.example.androidmypos.Adapter.AdapterUnit;
-import com.example.androidmypos.InSupplierActivity;
-import com.example.androidmypos.InUnitActivity;
 import com.example.androidmypos.Model.ResponseModelU;
 import com.example.androidmypos.Model.UnitModel;
-import com.example.androidmypos.Model.ResponseModelC;
 import com.example.androidmypos.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -55,12 +52,12 @@ public class ReadUnitActivity extends AppCompatActivity {
         rvDataU = findViewById(R.id.rv_unit);
         srlDataU = findViewById(R.id.srl_unit);
         pbDataU = findViewById(R.id.pb_unit);
-//        fabUnit= findViewById(R.id.fab_unit);
+        fabUnit= findViewById(R.id.fab_unit);
 
         lmDataU = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rvDataU.setLayoutManager(lmDataU);
 
-        retrieveUnit();
+        //retrieveUnit();
 
         srlDataU.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -70,12 +67,12 @@ public class ReadUnitActivity extends AppCompatActivity {
                 srlDataU.setRefreshing(false);
             }
         });
-//        fabUnit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(ReadUnitActivity.this, InUnitActivity.class));
-//            }
-//        });
+        fabUnit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ReadUnitActivity.this, InUnitActivity.class));
+            }
+        });
     }
 
     public void retrieveUnit(){
@@ -90,7 +87,7 @@ public class ReadUnitActivity extends AppCompatActivity {
                 int kode = response.body().getKode();
                 String pesan = response.body().getPesan();
 
-                Toast.makeText(ReadUnitActivity.this, "Kode :"+kode+ "| Pesan :" +pesan, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ReadUnitActivity.this, "Kode :"+kode+ "| Pesan :" +pesan, Toast.LENGTH_SHORT).show();
                 listUnit = response.body().getData();
 
                 adDataU = new AdapterUnit(ReadUnitActivity.this, listUnit);
@@ -109,4 +106,9 @@ public class ReadUnitActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        retrieveUnit();
+    }
 }

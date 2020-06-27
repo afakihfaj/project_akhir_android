@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -14,11 +13,8 @@ import android.widget.Toast;
 import com.example.androidmypos.API.APIUnitData;
 import com.example.androidmypos.API.RetroServer;
 import com.example.androidmypos.Adapter.AdapterUnit;
-import com.example.androidmypos.InSupplierActivity;
-import com.example.androidmypos.InUnitActivity;
 import com.example.androidmypos.Model.ResponseModelU;
 import com.example.androidmypos.Model.UnitModel;
-import com.example.androidmypos.Model.ResponseModelC;
 import com.example.androidmypos.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

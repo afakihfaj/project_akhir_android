@@ -11,12 +11,13 @@ import com.example.androidmypos.Activity.ReadCategoryActivity;
 import com.example.androidmypos.Activity.ReadItemActivity;
 import com.example.androidmypos.Activity.ReadSupplierActivity;
 import com.example.androidmypos.Activity.ReadUserActivity;
-
+import com.example.androidmypos.Activity.ReadUnitActivity;
 public class DashboardActivity extends AppCompatActivity {
 private RelativeLayout menu1;
 private RelativeLayout menu2;
 private RelativeLayout menu3;
 private RelativeLayout menu4;
+private RelativeLayout menu5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,14 @@ private RelativeLayout menu4;
             public void onClick(View v) {
                 Intent pindahmenu4 = new Intent(DashboardActivity.this, ReadUnitActivity.class);
                 startActivity(pindahmenu4);
+            }
+        });
+        menu5 = (RelativeLayout) findViewById(R.id.menu5);
+        menu5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent pindahmenu5 = new Intent(DashboardActivity.this, ReadSupplierActivity.class);
+                startActivity(pindahmenu5);
             }
         });
 

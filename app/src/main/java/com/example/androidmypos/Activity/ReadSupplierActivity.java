@@ -14,8 +14,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.androidmypos.API.APISupplierData;
 import com.example.androidmypos.API.RetroServer;
 import com.example.androidmypos.Adapter.AdapterSupplier;
-import com.example.androidmypos.InCategoryActivity;
-import com.example.androidmypos.InSupplierActivity;
 import com.example.androidmypos.Model.ResponseModelS;
 import com.example.androidmypos.Model.SupplierModel;
 import com.example.androidmypos.R;
@@ -58,7 +56,7 @@ public class ReadSupplierActivity extends AppCompatActivity {
         lmDataC = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rvDataC.setLayoutManager(lmDataC);
 
-        retrieveSupplier();
+        //retrieveSupplier();
 
         srlDataC.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -89,7 +87,7 @@ public class ReadSupplierActivity extends AppCompatActivity {
                 int kode = response.body().getKode();
                 String pesan = response.body().getPesan();
 
-                Toast.makeText(ReadSupplierActivity.this, "Kode :"+kode+ "| Pesan :" +pesan, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(ReadSupplierActivity.this, "Kode :"+kode+ "| Pesan :" +pesan, Toast.LENGTH_SHORT).show();
                 listSupplier = response.body().getData();
 
                 adDataC = new AdapterSupplier(ReadSupplierActivity.this, listSupplier);
@@ -108,4 +106,9 @@ public class ReadSupplierActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        retrieveSupplier();
+    }
 }

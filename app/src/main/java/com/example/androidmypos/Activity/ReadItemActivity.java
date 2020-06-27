@@ -1,5 +1,6 @@
 package com.example.androidmypos.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -16,6 +17,7 @@ import com.example.androidmypos.Adapter.AdapterItem;
 import com.example.androidmypos.Model.ItemModel;
 import com.example.androidmypos.Model.ResponseModelItem;
 import com.example.androidmypos.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,7 @@ public class ReadItemActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager lmDataI;
     private ProgressBar pbDataI;
     private SwipeRefreshLayout srlDataI;
+    private FloatingActionButton fab_Item;
 
     private List<ItemModel> listItem = new ArrayList<>();
 
@@ -49,10 +52,11 @@ public class ReadItemActivity extends AppCompatActivity {
         rvDataI = findViewById(R.id.rv_item);
         pbDataI = findViewById(R.id.pb_item);
         srlDataI = findViewById(R.id.srl_item);
+        fab_Item = findViewById(R.id.fab_tambahI);
         lmDataI = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rvDataI.setLayoutManager(lmDataI);
 
-        retrieveItem();
+        //retrieveItem();
 
         srlDataI.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -60,6 +64,12 @@ public class ReadItemActivity extends AppCompatActivity {
                 srlDataI.setRefreshing(true);
                 retrieveItem();
                 srlDataI.setRefreshing(false);
+            }
+        });
+        fab_Item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ReadItemActivity.this, InItemActivity.class));
             }
         });
     }
@@ -75,7 +85,7 @@ public class ReadItemActivity extends AppCompatActivity {
                 int kode = response.body().getKode();
                 String pesan = response.body().getPesan();
 
-                Toast.makeText(ReadItemActivity.this, "Kode :"+kode+ "| Pesan :" +pesan, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(ReadItemActivity.this, "Kode :"+kode+ "| Pesan :" +pesan, Toast.LENGTH_SHORT).show();
                 listItem = response.body().getData();
 
                 adDataI = new AdapterItem(ReadItemActivity.this, listItem);
@@ -94,4 +104,9 @@ public class ReadItemActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        retrieveItem();
+    }
 }

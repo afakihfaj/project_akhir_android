@@ -9,7 +9,7 @@
     android:paddingTop="80dp"
     android:paddingRight="30dp"
     android:background="@drawable/background_gradient2"
-    tools:context=".InCategoryActivity">
+    tools:context=".Activity.InCategoryActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
