@@ -87,7 +87,7 @@ public class ReadCategoryActivity extends AppCompatActivity {
                 int kode = response.body().getKode();
                 String pesan = response.body().getPesan();
 
-               // Toast.makeText(ReadCategoryActivity.this, "Kode :"+kode+ "| Pesan :" +pesan, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(ReadCategoryActivity.this, "Kode :"+kode+ "| Pesan :" +pesan, Toast.LENGTH_SHORT)
                 listCategory = response.body().getData();
 
                 adDataC = new AdapterCategory(ReadCategoryActivity.this, listCategory);
