@@ -4,7 +4,8 @@ $perintah = "SELECT * FROM p_category";
 $eksekusi = mysqli_query($conn, $perintah);
 $cek = mysqli_affected_rows($conn);
 
-if ($cek > 0){
+if ($cek > 0)
+{
     $response["kode"] = 1;
     $response["pesan"] = "Data Tersedia";
     $response["data"] = array();
@@ -18,7 +19,8 @@ if ($cek > 0){
         array_push($response["data"], $F);
     }
 }
-else{
+else
+{
     $response["kode"] = 0;
     $response["pesan"] = "Data Tidak Tersedia";
 }
