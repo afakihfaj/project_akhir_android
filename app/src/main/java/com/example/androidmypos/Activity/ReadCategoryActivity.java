@@ -56,7 +56,7 @@ public class ReadCategoryActivity extends AppCompatActivity {
         lmDataC = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rvDataC.setLayoutManager(lmDataC);
 
-        //retrieveCategory();
+
 
         srlDataC.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
