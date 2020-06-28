@@ -10,7 +10,7 @@ if ($cek > 0){
     $response["data"] = array();
 
     while($ambil = mysqli_fetch_object($eksekusi)){
-        $F['category_id'] = $ambil->unit_id;
+        $F['unit_id'] = $ambil->unit_id;
         $F['name'] = $ambil->name;
         // $F['created'] = $ambil->created;
         // $F['updated'] = $ambil->updated;
@@ -24,4 +24,3 @@ else{
 }
 echo json_encode($response);
 mysqli_close($conn);
-?>

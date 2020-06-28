@@ -13,9 +13,11 @@ if ($cek > 0){
         $F['item_id'] = $ambil->item_id;
         $F['barcode'] = $ambil->barcode;
         $F['name'] = $ambil->name;
-        $F['supplier_id'] = $ambil->supplier_id;
-        $F['unit_id'] = $ambil->$unit_id;
+        $F['category_id'] = $ambil->category_id;
+        $F['unit_id'] = $ambil->unit_id;
         $F['price'] = $ambil->price;
+        $F['berat'] = $ambil->berat;
+        $F['deskripsi'] = $ambil->deskripsi;
         $F['stock'] = $ambil->stock;
 
         array_push($response["data"], $F);

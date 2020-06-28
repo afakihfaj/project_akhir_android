@@ -10,7 +10,7 @@ if ($cek > 0){
     $response["data"] = array();
 
     while($ambil = mysqli_fetch_object($eksekusi)){
-        $F['supplier_id'] = $ambil->user_id;
+        $F['user_id'] = $ambil->user_id;
         $F['name'] = $ambil->name;
         $F['address'] = $ambil->address;
         $F['username'] = $ambil->username;
@@ -24,4 +24,3 @@ else{
 }
 echo json_encode($response);
 mysqli_close($conn);
-?>

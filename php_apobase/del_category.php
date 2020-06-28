@@ -1,36 +1,26 @@
 <?php
+require('koneksi.php');
 
-include_once('koneksi.php');
+$response = array();
 
-$category_id = $_GET['category_id'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $category_id = $_POST["category_id"];
 
-$getdata = mysqli_query($conn, "SELECT * FROM p_category WHERE category_id = '$category_id'");
-$rows = mysqli_num_rows($getdata);
+    $perintah = "DELETE FROM p_category where category_id = '$category_id'";
+    $eksekusi = mysqli_query($conn, $perintah);
+    $cek = mysqli_affected_rows($conn);
 
-$delete = "DELETE FROM p_category WHERE category_id = '$category_id'";
-$exedelete = mysqli_query($conn,$delete);
-
-if ($rows > 0)
-{
-    if($exedelete)
-    {
-        $respone ['code']=1;
-        $respone ['message'] = "Delete Success";
+    if ($cek > 0) {
+        $response["kode"] = 1;
+        $response["pesan"] = "Data berhasil dihapus";
+    } else {
+        $response["kode"] = 0;
+        $response["pesan"] = "Gagal menghapus data";
     }
-    else
-    {
-        $respone ['code']=0;
-        $respone ['message'] = "Delete Gagal";
-    }
-
-}
-else
-{
-    $respone ['code']=0;
-    $respone ['message'] = "Delete gagal, Data tidak ditemukan";
+} else {
+    $response["kode"] = 0;
+    $response["pesan"] = "Tidak ada post data";
 }
 
-
-echo json_encode($respone);
-
-?>
+echo json_encode($response);
+mysqli_close($conn);

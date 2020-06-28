@@ -4,18 +4,18 @@ require('koneksi.php');
 $response = array();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST["name"];
+    $supplier_id = $_POST["supplier_id"];
 
-    $perintah = "INSERT INTO p_unit (name) VALUES ('$name')";
+    $perintah = "DELETE FROM supplier where supplier_id = '$supplier_id' ";
     $eksekusi = mysqli_query($conn, $perintah);
     $cek = mysqli_affected_rows($conn);
 
     if ($cek > 0) {
         $response["kode"] = 1;
-        $response["pesan"] = "Data berhasil disimpan";
+        $response["pesan"] = "Data berhasil dihapus";
     } else {
         $response["kode"] = 0;
-        $response["pesan"] = "Gagal menyimpan data";
+        $response["pesan"] = "Gagal menghapus data";
     }
 } else {
     $response["kode"] = 0;

@@ -4,18 +4,20 @@ require('koneksi.php');
 $response = array();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $user_id = $_POST["user_id"];
+    $username = $_POST["username"];
     $name = $_POST["name"];
-
-    $perintah = "INSERT INTO p_unit (name) VALUES ('$name')";
+    $address = $_POST["address"];
+    $perintah = "UPDATE user SET username ='$username',name ='$name',address ='$address', WHERE user_id='$user_id'";
     $eksekusi = mysqli_query($conn, $perintah);
     $cek = mysqli_affected_rows($conn);
 
     if ($cek > 0) {
         $response["kode"] = 1;
-        $response["pesan"] = "Data berhasil disimpan";
+        $response["pesan"] = "Data berhasil dihapus";
     } else {
         $response["kode"] = 0;
-        $response["pesan"] = "Gagal menyimpan data";
+        $response["pesan"] = "Data gagal dihapus";
     }
 } else {
     $response["kode"] = 0;

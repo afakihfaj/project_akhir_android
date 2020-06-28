@@ -1,27 +1,30 @@
 <?php
+require('koneksi.php');
+
+$response = array();
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST["username"];
+    $passwrod = $_POST["password"];
+    $name = $_POST["name"];
+    $address = $_POST["address"];
+    $level = $_POST["level"];
 
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $name = $_POST['name'];
-    $address = $_POST['address'];
-    $level = $_POST['level'];
+    $perintah = "INSERT INTO user (username, password, name, address, level) VALUES ('$username','$passwrod','$name','$address','$level')";
+    $eksekusi = mysqli_query($conn, $perintah);
+    $cek = mysqli_affected_rows($conn);
 
-    require_once 'koneksi.php';
-
-    $sql = "INSERT INTO user (username, password, name, address, level) VALUES('$username', '$password', '$name', '$address', '$level')";
-
-    if (mysqli_query($conn, $sql)) {
-        $result["success"] = "1";
-        $result["message"] = "success";
-
-        echo json_encode($result);
-        mysqli_close($conn);
+    if ($cek > 0) {
+        $response["kode"] = 1;
+        $response["pesan"] = "Data berhasil disimpan";
     } else {
-        $result["success"] = "0";
-        $result["message"] = "error";
-
-        echo json_encode($result);
-        mysqli_close($conn);
+        $response["kode"] = 0;
+        $response["pesan"] = "Gagal menyimpan data";
     }
+} else {
+    $response["kode"] = 0;
+    $response["pesan"] = "Tidak ada post data";
 }
+
+echo json_encode($response);
+mysqli_close($conn);
