@@ -84,8 +84,6 @@ public class ReadItemActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseModelItem> call, Response<ResponseModelItem> response) {
                 int kode = response.body().getKode();
                 String pesan = response.body().getPesan();
-
-               // Toast.makeText(ReadItemActivity.this, "Kode :"+kode+ "| Pesan :" +pesan, Toast.LENGTH_SHORT).show();
                 listItem = response.body().getData();
 
                 adDataI = new AdapterItem(ReadItemActivity.this, listItem);
