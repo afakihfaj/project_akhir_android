@@ -19,7 +19,7 @@ public class InputUser extends AppCompatActivity {
     private ProgressBar loading;
     private String uname, pword, nama, alamat, lepel;
 
-    private static String URL_USER="http://192.168.1.6/php_apobase/in_user.php";
+    private static String URL_USER="http://192.168.1.8/php_apobase/in_user.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -2,6 +2,7 @@ package com.example.androidmypos.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,11 +26,11 @@ import retrofit2.Response;
 public class InCategoryActivity extends AppCompatActivity {
 
     private EditText category;
-    private Button btn_category, btn_data;
+    private Button btn_category, btn_data, btn_update;
     private ProgressBar loading;
     private String name;
 
-    private static String URL_CATEGORY="http://192.168.1.6/php_apobase/in_category.php";
+    private static String URL_CATEGORY="http://192.168.1.8/php_apobase/in_category.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,17 @@ public class InCategoryActivity extends AppCompatActivity {
         category= findViewById(R.id.category);
         btn_category=findViewById(R.id.btn_category);
         btn_data = findViewById(R.id.btn_data);
+        btn_update = findViewById(R.id.btn_update);
+        if(savedInstanceState == null)
+        {
+            Intent data = getIntent();
+            btn_data.setVisibility(View.GONE);
+            btn_category.setVisibility(View.GONE);
+            btn_update.setVisibility(View.VISIBLE);
+            String iddata = data.getStringExtra("category_id");
+            category.setText(data.getStringExtra("name"));
 
+        }
         btn_category.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

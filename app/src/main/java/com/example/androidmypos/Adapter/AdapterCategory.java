@@ -3,12 +3,14 @@ package com.example.androidmypos.Adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.androidmypos.Activity.ReadCategoryActivity;
+import com.example.androidmypos.Activity.InCategoryActivity;
 import com.example.androidmypos.API.APICategoryData;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +27,7 @@ import retrofit2.Response;
 public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.HolderData> {
     private Context ctx;
     private List<CategoryModel> listData;
+    private String name;
     private int category_id;
 
     public AdapterCategory(Context ctx, List<CategoryModel> listData) {
@@ -47,8 +50,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.Holder
         holder.tvCategory_id.setText(Integer.toString(dm.getCategory_id()));//error tadi karena belum dikonversi ke string. nilai categori id masih integer harus dikonversi ke string
 
         holder.tvName.setText(dm.getName());
-//        holder.tvCreated.setText(cm.getCreated());
-//        holder.tvUpdate.setText(cm.getUpdated());
+        holder.dm = dm;
     }
 
     @Override
@@ -58,6 +60,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.Holder
 
     public class HolderData extends RecyclerView.ViewHolder{
         TextView tvCategory_id,tvName;
+        CategoryModel dm;
 
         public HolderData(@NonNull View itemView) {
             super(itemView);
@@ -72,7 +75,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.Holder
                     dialogPesan.setCancelable(true);
 
                     category_id = Integer.parseInt(tvCategory_id.getText().toString());
-
+                    name = tvName.getText().toString();
                     dialogPesan.setPositiveButton("Hapus", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int which) {
@@ -85,15 +88,17 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.Holder
                     dialogPesan.setNegativeButton("Edit", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int which) {
+                            Intent goInput = new Intent(ctx, InCategoryActivity.class);
+                            goInput.putExtra("category_id", dm.getCategory_id());
+                            goInput.putExtra("name", dm.getName());
 
+                            ctx.startActivity(goInput);
                         }
                     });
                     dialogPesan.show();
                     return false;
                 }
             });
-//            tvCreated = itemView.findViewById(R.id.tv_created);
-//            tvUpdate = itemView.findViewById(R.id.tv_update);
         }
 
         private void deleteData(){

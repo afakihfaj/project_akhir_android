@@ -27,7 +27,7 @@ public class InSupplierActivity extends AppCompatActivity {
     private ProgressBar loading;
     private String name, hp, alamat, desc;
 
-    private static String URL_SUPPLIER="http://192.168.1.6/php_apobase/in_supplier.php";
+    private static String URL_SUPPLIER="http://192.168.1.8/php_apobase/in_supplier.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

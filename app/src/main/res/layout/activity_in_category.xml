@@ -45,5 +45,15 @@
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="55dp"/>
+    <Button
+        android:id="@+id/btn_update"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:textColor="@android:color/white"
+        android:text="Update"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:visibility="gone"
+        />
 
 </LinearLayout>

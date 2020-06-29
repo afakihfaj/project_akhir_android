@@ -87,7 +87,7 @@ public class ReadCategoryActivity extends AppCompatActivity {
                 int kode = response.body().getKode();
                 String pesan = response.body().getPesan();
 
-               
+
                 listCategory = response.body().getData();
 
                 adDataC = new AdapterCategory(ReadCategoryActivity.this, listCategory);
