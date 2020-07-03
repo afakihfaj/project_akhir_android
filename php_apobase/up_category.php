@@ -12,10 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($cek > 0) {
         $response["kode"] = 1;
-        $response["pesan"] = "Data berhasil dihapus";
+        $response["pesan"] = "Data berhasil diupdate";
     } else {
         $response["kode"] = 0;
-        $response["pesan"] = "Data gagal dihapus";
+        $response["pesan"] = "Data gagal diupdate";
     }
 } else {
     $response["kode"] = 0;
