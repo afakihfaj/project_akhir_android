@@ -1,5 +1,6 @@
 package com.example.androidmypos.API;
 
+import com.example.androidmypos.Model.ResponseModelC;
 import com.example.androidmypos.Model.ResponseModelS;
 import com.example.androidmypos.Model.ResponseModelUser;
 
@@ -26,6 +27,15 @@ public interface APIUserData {
     @POST("del_user.php")
     Call<ResponseModelUser> ardDeleteData
             (
-              @Field("user_id") int user_id
+              @Field("user_id") Integer user_id
             );
+    @FormUrlEncoded
+    @POST("up_user.php")
+    Call<ResponseModelUser> ardUpdateData(
+            @Field("user_id") int user_id,
+            @Field("username") String username,
+            @Field("name") String name,
+            @Field("address") String address
+
+    );
 }

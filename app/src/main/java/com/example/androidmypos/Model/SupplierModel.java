@@ -26,7 +26,7 @@ public class SupplierModel {
     public String getAddress() { return address; }
 
     public void setDescription(String description) { this.address = description;}
-    public String getDescription() { return phone; }
+    public String getDescription() { return description; }
 
 
 }

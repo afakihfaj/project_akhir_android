@@ -9,14 +9,14 @@
     android:paddingTop="80dp"
     android:paddingRight="30dp"
     android:background="@drawable/background_gradient2"
-    tools:context=".Activity.InCategoryActivity">
+    tools:context=".Activity.UpdUnitActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
-            android:id="@+id/category"
-            android:hint="Input Category"
+            android:id="@+id/unit"
+            android:hint="Update Unit"
             android:inputType="textPersonName"
             android:textColor="@color/colorText"
             android:layout_width="match_parent"
@@ -30,10 +30,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
-        android:id="@+id/btn_category"
+        android:id="@+id/btn_unit"
         android:backgroundTint="@color/colorPrimaryDark"
         android:textColor="@android:color/white"
-        android:text="Input"
+        android:text="UPDATE"
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="55dp"/>
@@ -41,11 +41,9 @@
         android:id="@+id/btn_data"
         android:backgroundTint="@color/colorPrimaryDark"
         android:textColor="@android:color/white"
-        android:text="Lihat Data Category"
+        android:text="Lihat Data Unit"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="55dp"/>
-
-        />
 
 </LinearLayout>

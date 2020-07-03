@@ -22,4 +22,10 @@ public interface APIUnitData {
     Call<ResponseModelU> ardDeleteData(
             @Field("unit_id") int unit_id
     );
+    @FormUrlEncoded
+    @POST("up_unit.php")
+    Call<ResponseModelU> ardUpdateData(
+            @Field("unit_id") int unit_id,
+            @Field("name") String name
+    );
 }

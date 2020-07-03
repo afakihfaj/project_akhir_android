@@ -12,8 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.InItemActivity"></activity>
-        <activity android:name=".Activity.InputUser"></activity>
+        <activity android:name=".Activity.UpSupplierActivity"></activity>
+        <activity android:name=".Activity.UpItemActivity" />
+        <activity android:name=".Activity.UpdUnitActivity" />
+        <activity android:name=".Activity.UpCategoryActivity" />
+        <activity android:name=".Activity.UpUserActivity" />
+        <activity android:name=".Activity.InItemActivity" />
+        <activity android:name=".Activity.InputUser" />
         <activity android:name=".Activity.MainActivity" />
         <activity android:name=".DashboardActivity" />
         <activity android:name=".HomeActivity" />

@@ -4,9 +4,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.androidmypos.Activity.ReadCategoryActivity;
@@ -15,6 +17,7 @@ import com.example.androidmypos.API.APICategoryData;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.androidmypos.API.RetroServer;
+import com.example.androidmypos.Activity.UpCategoryActivity;
 import com.example.androidmypos.Model.CategoryModel;
 import com.example.androidmypos.R;
 import com.example.androidmypos.Model.ResponseModelC;
@@ -29,6 +32,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.Holder
     private List<CategoryModel> listData;
     private String name;
     private int category_id;
+    Button btn_update;
 
     public AdapterCategory(Context ctx, List<CategoryModel> listData) {
         this.ctx = ctx;
@@ -88,9 +92,10 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.Holder
                     dialogPesan.setNegativeButton("Edit", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int which) {
-                            Intent goInput = new Intent(ctx, InCategoryActivity.class);
-                            goInput.putExtra("category_id", dm.getCategory_id());
+                            Intent goInput = new Intent(ctx, UpCategoryActivity.class);
+                            goInput.putExtra("kode", Integer.toString(dm.getCategory_id()));
                             goInput.putExtra("name", dm.getName());
+                            Log.d("test", Integer.toString(dm.getCategory_id()));
 
                             ctx.startActivity(goInput);
                         }

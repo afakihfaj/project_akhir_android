@@ -8,6 +8,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class ReadCategoryActivity extends AppCompatActivity {
     private ProgressBar pbDataC;
     private SwipeRefreshLayout srlDataC;
     private FloatingActionButton fabCategory;
+
 
     private List<CategoryModel> listCategory = new ArrayList<>();
 
@@ -71,6 +73,7 @@ public class ReadCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ReadCategoryActivity.this, InCategoryActivity.class));
+
             }
         });
 

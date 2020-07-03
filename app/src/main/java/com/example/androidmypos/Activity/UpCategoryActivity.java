@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,39 +12,43 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.androidmypos.API.APICategoryData;
-
 import com.example.androidmypos.API.RetroServer;
-
 import com.example.androidmypos.Model.ResponseModelC;
-
 import com.example.androidmypos.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-public class InCategoryActivity extends AppCompatActivity {
-
+public class UpCategoryActivity extends AppCompatActivity {
     private EditText category;
-    private Button btn_category, btn_data, btn_update;
+    private Button btn_data, btn_update;
     private ProgressBar loading;
-    private String name;
+    public String name = "";
+    public String category_id = "";
 
-    private static String URL_CATEGORY="http://192.168.1.6/php_apobase/in_category.php";
+    private static String URL_CATEGORY="http://192.168.1.108/php_apobase/up_category.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_in_category);
+        setContentView(R.layout.activity_up_category);
 
         loading= findViewById(R.id.loading);
         category= findViewById(R.id.category);
-        btn_category=findViewById(R.id.btn_category);
         btn_data = findViewById(R.id.btn_data);
-        //btn_update = findViewById(R.id.btn_update);
+        btn_update = findViewById(R.id.btn_update);
+//        category_id= findViewById(R.id.category_id);
 
-        btn_category.setOnClickListener(new View.OnClickListener() {
+        Intent data = getIntent();
+        if(data != null)
+        {
+            category_id = data.getStringExtra("kode");
+
+            category.setText(data.getStringExtra("name"));
+            Log.d("category_id", "Kategori "+data.getStringExtra("kode"));
+        }
+        btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 name = category.getText().toString();
@@ -52,7 +57,7 @@ public class InCategoryActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    inputCategory();
+                    upCategory();
                 }
             }
         });
@@ -64,27 +69,26 @@ public class InCategoryActivity extends AppCompatActivity {
         });
     }
 
-    private void inputCategory(){
+    private void upCategory(){
         APICategoryData ardData = RetroServer.konekRetrofit().create(APICategoryData.class);
-        Call<ResponseModelC> icategory = ardData.ardInputData(name);
+        Call<ResponseModelC> ucategory = ardData.ardUpdateData(Integer.parseInt(category_id),name);
 
-        icategory.enqueue(new Callback<ResponseModelC>() {
+        ucategory.enqueue(new Callback<ResponseModelC>() {
             @Override
             public void onResponse(Call<ResponseModelC> call, Response<ResponseModelC> response) {
                 int kode = response.body().getKode();
                 String pesan = response.body().getPesan();
 
-                Toast.makeText(InCategoryActivity.this, "Kode :"+kode+ "| Pesan :" +pesan, Toast.LENGTH_SHORT).show();
+                Toast.makeText(UpCategoryActivity.this, "Kode :"+kode+ "| Pesan :" +pesan, Toast.LENGTH_SHORT).show();
                 finish();
             }
 
             @Override
             public void onFailure(Call<ResponseModelC> call, Throwable t) {
-                Toast.makeText(InCategoryActivity.this, "Gagal Menghubungkan ke Server", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UpCategoryActivity.this, "Gagal Menghubungkan ke Server", Toast.LENGTH_SHORT).show();
 
 
             }
         });
     }
-
 }

@@ -3,6 +3,8 @@ package com.example.androidmypos.Adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +14,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.androidmypos.API.APISupplierData;
 import com.example.androidmypos.API.APIUnitData;
 import com.example.androidmypos.API.RetroServer;
-import com.example.androidmypos.Activity.ReadItemActivity;
 import com.example.androidmypos.Activity.ReadUnitActivity;
-import com.example.androidmypos.Model.ResponseModelS;
+import com.example.androidmypos.Activity.UpdUnitActivity;
 import com.example.androidmypos.Model.ResponseModelU;
 import com.example.androidmypos.Model.UnitModel;
 import com.example.androidmypos.R;
@@ -31,6 +31,8 @@ public class AdapterUnit extends RecyclerView.Adapter<AdapterUnit.HolderData> {
     private Context ctx;
     private List<UnitModel> list_Unit;
     private int uid;
+    private String name;
+
 
     public AdapterUnit(Context ctx, List<UnitModel> list_Unit) {
         this.ctx = ctx;
@@ -52,6 +54,9 @@ public class AdapterUnit extends RecyclerView.Adapter<AdapterUnit.HolderData> {
         holder.tvUnit_id.setText(Integer.toString(dm.getUnit_id()));//error tadi karena belum dikonversi ke string. nilai categori id masih integer harus dikonversi ke string
 
         holder.tvName.setText(dm.getName());
+        holder.dm = dm;
+
+
 //        holder.tvCreated.setText(cm.getCreated());
 //        holder.tvUpdate.setText(cm.getUpdated());
     }
@@ -63,7 +68,7 @@ public class AdapterUnit extends RecyclerView.Adapter<AdapterUnit.HolderData> {
 
     public class HolderData extends RecyclerView.ViewHolder{
         TextView tvUnit_id,tvName;
-
+        UnitModel dm;
         public HolderData(@NonNull View itemView) {
             super(itemView);
             tvUnit_id = itemView.findViewById(R.id.tv_id);
@@ -76,7 +81,7 @@ public class AdapterUnit extends RecyclerView.Adapter<AdapterUnit.HolderData> {
                     dialogPesan.setCancelable(true);
 
                     uid = Integer.parseInt(tvUnit_id.getText().toString());
-
+                    //name = tvName.getText().toString();
                     dialogPesan.setPositiveButton("Hapus", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int which) {
@@ -89,7 +94,11 @@ public class AdapterUnit extends RecyclerView.Adapter<AdapterUnit.HolderData> {
                     dialogPesan.setNegativeButton("Edit", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int which) {
-
+                            Intent goInput = new Intent(ctx, UpdUnitActivity.class);
+                            goInput.putExtra("unit_id",Integer.toString(dm.getUnit_id()));
+                            goInput.putExtra("name", dm.getName());
+                            Log.d("test", Integer.toString(dm.getUnit_id()));
+                            ctx.startActivity(goInput);
                         }
                     });
                     dialogPesan.show();
@@ -97,8 +106,7 @@ public class AdapterUnit extends RecyclerView.Adapter<AdapterUnit.HolderData> {
 
                 }
             });
-//            tvCreated = itemView.findViewById(R.id.tv_created);
-//            tvUpdate = itemView.findViewById(R.id.tv_update);
+
         }
         private void deleteData(){
             APIUnitData ardData = RetroServer.konekRetrofit().create(APIUnitData.class);

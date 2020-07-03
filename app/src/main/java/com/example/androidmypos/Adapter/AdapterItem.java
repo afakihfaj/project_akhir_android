@@ -3,6 +3,8 @@ package com.example.androidmypos.Adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,8 @@ import com.example.androidmypos.API.RetroServer;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.androidmypos.Activity.ReadItemActivity;
+import com.example.androidmypos.Activity.UpItemActivity;
+import com.example.androidmypos.Activity.UpUserActivity;
 import com.example.androidmypos.Model.ResponseModelItem;
 import com.example.androidmypos.Model.ItemModel;
 import com.example.androidmypos.R;
@@ -55,6 +59,7 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.HolderData> {
         holder.tvDeskripsi.setText(dm.getDeskripsi());
 
         holder.tvStock.setText(dm.getStock());
+        holder.dm = dm;
     }
 
     @Override
@@ -64,7 +69,7 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.HolderData> {
 
     public class HolderData extends RecyclerView.ViewHolder{
         TextView tvItem_id,tvBarcode,tvName, tvCategory_id, tvUnit_id, tvPrice, tvBerat, tvDeskripsi, tvStock;
-
+        ItemModel dm;
         public HolderData(@NonNull View itemView) {
             super(itemView);
             tvItem_id = itemView.findViewById(R.id.tv_id);
@@ -97,7 +102,19 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.HolderData> {
                     dialogPesan.setNegativeButton("Edit", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int which) {
+                            Intent goInput = new Intent(ctx, UpItemActivity.class);
+                            goInput.putExtra("item_id",Integer.toString(dm.getItem_id()));
+                            goInput.putExtra("barcode", dm.getBarcode());
+                            goInput.putExtra("name", dm.getName());
+                            goInput.putExtra("category_id", dm.getCategory_id());
+                            goInput.putExtra("unit_id", dm.getUnit_id());
+                            goInput.putExtra("price", dm.getPrice());
+                            goInput.putExtra("berat", dm.getBerat());
+                            goInput.putExtra("deskripsi", dm.getDeskripsi());
+                            goInput.putExtra("stock", dm.getStock());
+                            Log.d("test", Integer.toString(dm.getItem_id()));
 
+                            ctx.startActivity(goInput);
                         }
                     });
                     dialogPesan.show();

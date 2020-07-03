@@ -25,4 +25,13 @@ public interface APISupplierData {
             (
                     @Field("supplier_id") int supplier_id
             );
+    @FormUrlEncoded
+    @POST("up_supplier.php")
+    Call<ResponseModelS> ardUnu(
+            @Field("supplier_id") int supplier_id,
+            @Field("name") String name,
+            @Field("phone") String phone,
+            @Field("address") String address,
+            @Field("description") String description
+    );
 }

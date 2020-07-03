@@ -3,6 +3,8 @@ package com.example.androidmypos.Adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +19,10 @@ import com.example.androidmypos.API.APIUserData;
 import com.example.androidmypos.API.RetroServer;
 
 
+import com.example.androidmypos.Activity.InCategoryActivity;
+import com.example.androidmypos.Activity.InputUser;
 import com.example.androidmypos.Activity.ReadUserActivity;
+import com.example.androidmypos.Activity.UpUserActivity;
 import com.example.androidmypos.Model.ResponseModelUser;
 import com.example.androidmypos.Model.UserModel;
 import com.example.androidmypos.R;
@@ -30,7 +35,7 @@ import retrofit2.Callback;
 public class AdapterUser extends RecyclerView.Adapter<AdapterUser.HolderData> {
     private Context ctx;
     private List<UserModel> list_User;
-    private int user_id;
+    private int user_id, level;
     private SwipeRefreshLayout srlDataUser;
     public AdapterUser(Context ctx, List<UserModel> list_User) {
         this.ctx = ctx;
@@ -57,6 +62,8 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.HolderData> {
         holder.tvName.setText(dm.getName());
         holder.tvAddress.setText(dm.getAddress());
         holder.tvUsername.setText(dm.getUsername());
+        holder.dm = dm;
+
     }
 
     @Override
@@ -66,6 +73,7 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.HolderData> {
 
     public class HolderData extends RecyclerView.ViewHolder{
         TextView tvUser_id,tvName, tvAddress, tvUsername;
+        UserModel dm;
 
         public HolderData(@NonNull View itemView) {
 
@@ -83,6 +91,7 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.HolderData> {
 
                     user_id = Integer.parseInt(tvUser_id.getText().toString());
 
+
                     dialogPesan.setPositiveButton("Hapus", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int which) {
@@ -95,7 +104,14 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.HolderData> {
                     dialogPesan.setNegativeButton("Edit", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int which) {
+                            Intent goInput = new Intent(ctx, UpUserActivity.class);
+                            goInput.putExtra("user_id", Integer.toString(dm.getUser_id()));
+                            goInput.putExtra("username", dm.getUsername());
+                            goInput.putExtra("name", dm.getName());
+                            goInput.putExtra("address", dm.getAddress());
+                            Log.d("test", Integer.toString(dm.getUser_id()));
 
+                            ctx.startActivity(goInput);
                         }
                     });
                     dialogPesan.show();

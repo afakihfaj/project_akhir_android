@@ -3,6 +3,8 @@ package com.example.androidmypos.Adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.androidmypos.API.APISupplierData;
+import com.example.androidmypos.Activity.UpSupplierActivity;
 import com.example.androidmypos.Model.ResponseModelS;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.androidmypos.API.APIItemData;
 import com.example.androidmypos.API.RetroServer;
 import com.example.androidmypos.Activity.ReadSupplierActivity;
 
@@ -55,6 +57,7 @@ public class AdapterSupplier extends RecyclerView.Adapter<AdapterSupplier.Holder
         holder.tvPhone.setText(dm.getPhone());
         holder.tvAddress.setText(dm.getAddress());
         holder.tvDescription.setText(dm.getDescription());
+        holder.dm = dm;
     }
 
     @Override
@@ -64,7 +67,7 @@ public class AdapterSupplier extends RecyclerView.Adapter<AdapterSupplier.Holder
 
     public class HolderData extends RecyclerView.ViewHolder{
         TextView tvSupplier_id,tvName, tvPhone, tvAddress, tvDescription;
-
+        SupplierModel dm;
         public HolderData(@NonNull View itemView) {
             super(itemView);
             tvSupplier_id = itemView.findViewById(R.id.tv_id);
@@ -93,7 +96,14 @@ public class AdapterSupplier extends RecyclerView.Adapter<AdapterSupplier.Holder
                     dialogPesan.setNegativeButton("Edit", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int which) {
-
+                            Intent goInput = new Intent(ctx, UpSupplierActivity.class);
+                            goInput.putExtra("supplier_id", Integer.toString(dm.getSupplier_id()));
+                            goInput.putExtra("name", dm.getName());
+                            goInput.putExtra("phone", dm.getPhone());
+                            goInput.putExtra("address", dm.getAddress());
+                            goInput.putExtra("description", dm.getDescription());
+                            Log.d("test", Integer.toString(dm.getSupplier_id()));
+                            ctx.startActivity(goInput);
                         }
                     });
                     dialogPesan.show();

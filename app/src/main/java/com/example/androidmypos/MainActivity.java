@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_supplier;
     private ProgressBar loading;
 
-    private static String URL_SUPPLIER="http://192.168.1.5/php_apobase/in_supplier.php";
+    private static String URL_SUPPLIER="http://192.168.1.4/php_apobase/in_supplier.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         phone= findViewById(R.id.phone);
         address= findViewById(R.id.address);
         description= findViewById(R.id.description);
-        btn_supplier=findViewById(R.id.btn_supplier);
+        btn_supplier=findViewById(R.id.btn_supplierr);
 
         btn_supplier.setOnClickListener(new View.OnClickListener() {
             @Override

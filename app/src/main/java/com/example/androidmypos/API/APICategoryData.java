@@ -1,14 +1,14 @@
 package com.example.androidmypos.API;
 
 import com.example.androidmypos.Model.ResponseModelC;
-import com.example.androidmypos.Model.ResponseModelUser;
+
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
+
 
 public interface APICategoryData {
     @GET("retrieve_category.php")
