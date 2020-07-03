@@ -5,7 +5,7 @@ $response = array();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $supplier_id = $_POST["supplier_id"];
-    $username = $_POST["username"];
+    $name = $_POST["name"];
     $phone = $_POST["phone"];
     $description = $_POST["description"];
     $perintah = "UPDATE supplier SET name ='$name',phone ='$phone',description ='$description' WHERE supplier_id='$supplier_id'";
@@ -14,10 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($cek > 0) {
         $response["kode"] = 1;
-        $response["pesan"] = "Data berhasil dihapus";
+        $response["pesan"] = "Data berhasil diupdate";
     } else {
         $response["kode"] = 0;
-        $response["pesan"] = "Data gagal dihapus";
+        $response["pesan"] = "Data gagal diupdate";
     }
 } else {
     $response["kode"] = 0;
