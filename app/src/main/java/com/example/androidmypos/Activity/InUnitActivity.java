@@ -38,7 +38,7 @@ public class InUnitActivity extends AppCompatActivity {
     private ProgressBar loading;
     private String name;
 
-    private static String URL_UNIT="http://192.168.1.6/php_apobase/in_unit.php";
+    private static String URL_UNIT="http://apobase.wsjti.com/php_apobase/in_unit.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText username, password;
     private Button btn_login;
-    private static String URL_LOGIN ="http://192.168.1.6/php_apobase/login.php";
+    private static String URL_LOGIN ="http://apobase.wsjti.com/php_apobase/login.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

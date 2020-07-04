@@ -27,7 +27,7 @@ public class InItemActivity extends AppCompatActivity {
     private ProgressBar loading;
     private String Barcode, Name, Category_id, Unit_id, Price, Berat, Deskripsi, Stock;
 
-    private static String URL_ITEM="http://192.168.1.6/php_apobase/in_category.php";
+    private static String URL_ITEM="http://apobase.wsjti.com/php_apobase/in_category.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

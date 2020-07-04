@@ -30,7 +30,7 @@ public class InCategoryActivity extends AppCompatActivity {
     private ProgressBar loading;
     private String name;
 
-    private static String URL_CATEGORY="http://192.168.1.6/php_apobase/in_category.php";
+    private static String URL_CATEGORY="http://apobase.wsjti.com/php_apobase/in_category.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

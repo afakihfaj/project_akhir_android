@@ -4,7 +4,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetroServer {
-    private static final String base_URL= "http://192.168.1.6/php_apobase/";
+    private static final String base_URL= "http://apobase.wsjti.com/php_apobase/";
     private static Retrofit retro;
 
     public static Retrofit konekRetrofit(){
